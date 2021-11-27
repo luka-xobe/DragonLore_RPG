@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 807655738269957305}
   - component: {fileID: 6542863983684633844}
-  - component: {fileID: 1370605896}
   - component: {fileID: 1370605897}
   - component: {fileID: 1370605898}
-  - component: {fileID: 3556516795194948470}
   - component: {fileID: 4085571669731765426}
+  - component: {fileID: 1552472377}
+  - component: {fileID: 3259108485499817291}
+  - component: {fileID: 847019637}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,19 +79,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1370605896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451414218667869407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43c7cb08e65ec847b7165d5e28e8fac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!195 &1370605897
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -132,7 +120,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3556516795194948470
+--- !u!114 &4085571669731765426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451414218667869407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdb8cf1ea4d6a344a7250a8356de332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 2
+  timeBetweenAttacks: 3
+  weaponDamage: 5
+--- !u!114 &1552472377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451414218667869407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43c7cb08e65ec847b7165d5e28e8fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &3259108485499817291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d6c58f33456d444a06996275afd48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4085571669731765426
+--- !u!114 &847019637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 451414218667869407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bdb8cf1ea4d6a344a7250a8356de332, type: 3}
+  m_Script: {fileID: 11500000, guid: 5908d6983897eb24b9bed65050adce48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4742766293296314833
