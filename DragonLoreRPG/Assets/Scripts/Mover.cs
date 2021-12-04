@@ -9,6 +9,7 @@ namespace RPG.Movement
     public class Mover : MonoBehaviour,IAction
     {
         [SerializeField] Transform target;
+        [SerializeField] float maxSpeed = 6f;
 
         NavMeshAgent navMeshAgent;
         Health health;
@@ -25,21 +26,22 @@ namespace RPG.Movement
 
         }
 
-        private void MoveToCursor()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
-            if (hasHit == true)
-            {
-                MoveTo(hit.point);
-            }
-
-        }
+        //private void MoveToCursor()
+       // {
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //   bool hasHit = Physics.Raycast(ray, out hit);
+        //    if (hasHit == true)
+         //   {
+         //       MoveTo(hit.point);
+         //   }
+//
+      //  }
 
         public void MoveTo(Vector3 destination)
         {
             navMeshAgent.destination = destination;
+        //    navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
             navMeshAgent.isStopped = false;
         }
 

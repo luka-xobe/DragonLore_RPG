@@ -2138,7 +2138,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 2.5
+  m_Speed: 2
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 5000
@@ -2212,6 +2212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  maxSpeed: 6
 --- !u!136 &6056764092007325969
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2241,6 +2242,9 @@ MonoBehaviour:
   chaseDistance: 5
   suspicionTime: 3
   patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
+  patrolSpeedFraction: 0.2
 --- !u!114 &2159337876023295414
 MonoBehaviour:
   m_ObjectHideFlags: 0
