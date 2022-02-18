@@ -13,14 +13,71 @@ namespace RPG.Combat
     {
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
-        [SerializeField] float weaponRange = 2f;
-        [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 5f;
+        Weapon currentWeapon = null;
+        Health health;
+        Weapon weapon;
 
-        private void Update()
+        [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] Transform handTransform = null;
+        [SerializeField] Weapon defaultWeapon = null;
+        
+
+        private void Start()
+        {
+            EquipWeapon(defaultWeapon);
+            health = GetComponent<Health>();
+
+            
+        }
+
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            Animator animator = GetComponent<Animator>();
+            weapon.Spawn(handTransform, animator);
+            Debug.Log("You took" + weapon);
+        }
+
+        float currentDamage = 0;
+
+        public void Blocking()
         {
 
-            timeSinceLastAttack += Time.deltaTime;
+         
+           //health.TakeDamage()
+
+
+        }
+            public GameObject FindClosestEnemy()
+            {
+                GameObject[] gos;
+                gos = GameObject.FindGameObjectsWithTag("Enemy");
+                GameObject closest = null;
+                float distance = Mathf.Infinity;
+                Vector3 position = transform.position;
+                foreach (GameObject go in gos)
+                {
+                    Vector3 diff = go.transform.position - position;
+                    float curDistance = diff.sqrMagnitude;
+                    if (curDistance < distance)
+                    {
+                        closest = go;
+                        distance = curDistance;
+                    }
+                }
+                return closest;
+            }
+
+
+
+
+            private void Update()
+        {
+
+           
+
+
+                timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
             if (target.IsDead()) return;
@@ -67,12 +124,12 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) { return; }
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(currentWeapon.GetDamage());
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
         }
 
         public void Attack(GameObject combatTarget)

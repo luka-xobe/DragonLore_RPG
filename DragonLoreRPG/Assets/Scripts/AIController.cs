@@ -74,6 +74,11 @@ namespace RPG.Control
             timeSinceArrivedAtWaypoint += Time.deltaTime;
         }
 
+        public void Aggrevate()
+        {
+            //code
+        }
+
         private void PatrolBehaviour()
         {
 
@@ -93,7 +98,9 @@ namespace RPG.Control
             {
                 mover.StartMoveAction(nextPosition);
             }
-           
+
+            
+
         }
 
         private void CycleWaypoint()
@@ -133,7 +140,7 @@ namespace RPG.Control
         }
 
         
-        //called by unity
+        
         private void OnDrawGizmosSelected()
         {
             
