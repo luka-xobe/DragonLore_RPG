@@ -18,7 +18,8 @@ namespace RPG.Combat
         Weapon weapon;
 
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] Transform handTransform = null;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
         
 
@@ -27,46 +28,21 @@ namespace RPG.Combat
             EquipWeapon(defaultWeapon);
             health = GetComponent<Health>();
 
-            
+            //Blocking();
         }
 
         public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
             Animator animator = GetComponent<Animator>();
-            weapon.Spawn(handTransform, animator);
+            weapon.Spawn(rightHandTransform, leftHandTransform ,animator);
             Debug.Log("You took" + weapon);
         }
 
         float currentDamage = 0;
-
-        public void Blocking()
-        {
-
-         
-           //health.TakeDamage()
-
-
-        }
-            public GameObject FindClosestEnemy()
-            {
-                GameObject[] gos;
-                gos = GameObject.FindGameObjectsWithTag("Enemy");
-                GameObject closest = null;
-                float distance = Mathf.Infinity;
-                Vector3 position = transform.position;
-                foreach (GameObject go in gos)
-                {
-                    Vector3 diff = go.transform.position - position;
-                    float curDistance = diff.sqrMagnitude;
-                    if (curDistance < distance)
-                    {
-                        closest = go;
-                        distance = curDistance;
-                    }
-                }
-                return closest;
-            }
+      
+       
+           
 
 
 
@@ -107,6 +83,10 @@ namespace RPG.Combat
                 TriggerAttack();
                 timeSinceLastAttack = 0;
 
+
+                //Health healthComponent = target.GetComponent<Health>();
+                //healthComponent.TakeDamage(weapon.weaponDamage);
+
             }
 
 
@@ -124,7 +104,22 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) { return; }
-            target.TakeDamage(currentWeapon.GetDamage());
+            //target.TakeDamage(currentWeapon.GetDamage());
+
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetDamage());
+            }
+        }
+
+        void Shoot()
+        {
+            Hit();
+
         }
 
         private bool GetIsInRange()

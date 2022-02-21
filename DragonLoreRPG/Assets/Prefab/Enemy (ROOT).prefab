@@ -2087,7 +2087,7 @@ GameObject:
   - component: {fileID: 2159337876023295414}
   m_Layer: 0
   m_Name: Enemy (ROOT)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2199,6 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d6c58f33456d444a06996275afd48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastRadius: 1
 --- !u!114 &2047556030136142506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,12 +2240,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0d461b9f62c1d4abb009a0f0f004cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 4
+  chaseDistance: 5
   suspicionTime: 5
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 3
   patrolSpeedFraction: 0.34
+  shoutDistance: 5
+  agroCooldownTime: 5
 --- !u!114 &2159337876023295414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,7 +2261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
-  handTransform: {fileID: 461188}
+  rightHandTransform: {fileID: 461188}
+  leftHandTransform: {fileID: 461188}
   defaultWeapon: {fileID: 11400000, guid: abdf313deb8584946bb682f8ca8d6c44, type: 2}
 --- !u!1 &193320
 GameObject:

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cab822764e7494fbeb1be378d13f5d, type: 3}
-  m_Name: Sword
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 8517534416194644628, guid: 6e53a52147831f04199f6c690df3ec33, type: 3}
-  animatorOverride: {fileID: 22100000, guid: e24976c4ea217a84483665510ff6a04c, type: 2}
+  equippedPrefab: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 283f77c6f942cee46aafdaf2c9bdf70f, type: 2}
   weaponDamage: 5
-  weaponRange: 2
-  isRightHanded: 1
-  projectile: {fileID: 0}
+  weaponRange: 20
+  isRightHanded: 0
+  projectile: {fileID: 411035954424622985, guid: f4c3d90abb6bcde4a8a98be3355e2034, type: 3}

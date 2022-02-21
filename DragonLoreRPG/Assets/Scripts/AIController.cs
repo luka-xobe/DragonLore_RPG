@@ -18,9 +18,12 @@ namespace RPG.Control
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 3f;
-        [Range(0,1)]
+        [Range(0, 1)]
         [SerializeField] float patrolSpeedFraction = 0.2f;
+        [SerializeField] float shoutDistance = 5f;
+        [SerializeField] float agroCooldownTime = 5f;
         
+
         Fighter fighter;
         Health health;
         Mover mover;
@@ -29,6 +32,7 @@ namespace RPG.Control
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        float timeSinceAgrrevated = Mathf.Infinity;
         int currentWaypointIndex = 0;
         
         private void Start()
@@ -72,12 +76,9 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeSinceArrivedAtWaypoint += Time.deltaTime;
+            timeSinceAgrrevated += Time.deltaTime;
         }
 
-        public void Aggrevate()
-        {
-            //code
-        }
 
         private void PatrolBehaviour()
         {
@@ -120,6 +121,17 @@ namespace RPG.Control
 
         }
 
+        public void Aggrevate()
+        {
+            timeSinceAgrrevated = 0;
+        }
+
+        private bool IsAggrevated()
+        {
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+            return distanceToPlayer < chaseDistance || timeSinceAgrrevated < agroCooldownTime;
+        }
+
         private void SuspicionBehaviour()
         {
             GetComponent<ActionSchedule>().CancelCurrentAction();
@@ -129,7 +141,25 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+
+            AggrevateNearbyEnemies();
         }
+
+        private void AggrevateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                if (ai == null) continue;
+
+                ai.Aggrevate();
+            }
+        }
+
+
+
+
 
 
         private bool InAttackRangeOfPlayer()

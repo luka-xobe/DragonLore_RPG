@@ -12,14 +12,20 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
         Health health;
-        
 
+
+        [SerializeField] float raycastRadius = 1f;
 
         private void Start()
         {
             
             health = GetComponent<Health>();
         }
+
+
+
+
+
 
 
         private void Update()
@@ -38,7 +44,7 @@ namespace RPG.Control
 
         private bool InteractWithCombat()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
